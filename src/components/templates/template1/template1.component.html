@@ -1,0 +1,100 @@
+<!-- Preview Button -->
+<div class="flex justify-end max-w-5xl mx-auto mt-6 px-4 no-print">
+  <button
+    (click)="generatePreview()"
+    class="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition"
+  >
+    Preview Resume
+  </button>
+</div>
+
+<!-- Resume Layout -->
+<div
+  id="resumePreview"
+  class="grid  md:grid-cols-3 print:grid-cols-3 print:h-auto max-w-5xl mx-auto bg-white shadow-xl rounded overflow-hidden mt-5 print:shadow-none print:rounded-none print:bg-white print:text-black"
+>
+  <!-- Sidebar -->
+  <aside class="col-span-1 bg-gray-100 p-6 text-center print:col-span-1 border-r print:border-none">
+    <img
+      src="https://via.placeholder.com/150"
+      alt="Profile Photo"
+      class="w-32 h-32 rounded-full object-cover mx-auto mb-4 border-4 border-blue-500"
+    />
+    <h2 class="text-xl font-semibold text-gray-800">Daksh Sharma</h2>
+    <p class="text-gray-500 mb-6">Backend Developer</p>
+    <div class="text-left text-sm text-gray-700 space-y-1">
+      <p><strong>Email:</strong> daksexample.com</p>
+      <p><strong>Phone:</strong> +91-9876543210</p>
+      <p><strong>Location:</strong> Indore, MP</p>
+    </div>
+    <hr class="my-6" />
+    <div class="text-left text-sm text-gray-700">
+      <h3 class="text-sm font-semibold text-blue-600 mb-2">Soft Skills</h3>
+      <ul class="list-disc list-inside space-y-1">
+        <li>Problem Solving</li>
+        <li>Team Collaboration</li>
+        <li>Adaptability</li>
+      </ul>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="col-span-2 p-8 space-y-8 print:col-span-2">
+    <!-- Summary -->
+    <section>
+      <h3 class="text-xl font-bold text-blue-600 mb-2">Professional Summary</h3>
+      <p class="text-gray-700 leading-relaxed">
+        Backend Developer at Infosys specializing in Spring Boot, Kafka, Tailwind CSS, and secure microservices. Actively exploring Angular 18 and passionate about building scalable web tools.
+      </p>
+    </section>
+
+    <!-- Experience -->
+    <section>
+      <h3 class="text-xl font-bold text-blue-600 mb-2">Experience</h3>
+      <div>
+        <h4 class="text-md font-semibold">Infosys – Backend Developer</h4>
+        <span class="text-sm text-gray-500">Feb 2024 – Present</span>
+        <ul class="list-disc list-inside mt-2 text-gray-700 text-sm space-y-1">
+          <li>Migrated JSF apps to Spring Boot architecture</li>
+          <li>Integrated Kafka and monitored broker connectivity</li>
+          <li>Fixed CI/CD SonarQube & SAST issues for production services</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h3 class="text-xl font-bold text-blue-600 mb-2">Education</h3>
+      <div>
+        <h4 class="text-md font-semibold">B.Tech in Computer Science</h4>
+        <span class="text-sm text-gray-500">XYZ University, 2020 – 2024</span>
+        <p class="text-gray-700 text-sm mt-1">CGPA: 8.6/10</p>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section>
+      <h3 class="text-xl font-bold text-blue-600 mb-2">Technical Skills</h3>
+      <div class="flex flex-wrap gap-2 text-sm text-gray-700">
+        <span class="bg-blue-100 px-3 py-1 rounded-full">Java 17</span>
+        <span class="bg-blue-100 px-3 py-1 rounded-full">Spring Boot</span>
+        <span class="bg-blue-100 px-3 py-1 rounded-full">Kafka</span>
+        <span class="bg-blue-100 px-3 py-1 rounded-full">Angular 18</span>
+        <span class="bg-blue-100 px-3 py-1 rounded-full">Tailwind CSS</span>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section>
+      <h3 class="text-xl font-bold text-blue-600 mb-2">Projects</h3>
+      <div class="space-y-2">
+        <div>
+          <h4 class="font-semibold text-gray-800">Resume Builder App</h4>
+          <p class="text-sm text-gray-600">
+            Developed a dynamic resume builder using Angular 18 & Tailwind with live preview, photo upload, and export.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

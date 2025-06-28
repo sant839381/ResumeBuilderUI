@@ -1,0 +1,701 @@
+<div class="grid grid-cols-1 md:grid-cols-[30%_70%] bg-gray-50">
+  <!-- Sidebar -->
+  <aside class="bg-white p-6 shadow">
+    <h2 class="text-2xl font-bold text-blue-700 mb-6">Sections</h2>
+    <nav class="space-y-4">
+      <button (click)="activeSection = 'personal'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'personal',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'personal'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Personal Details
+      </button>
+      <button (click)="activeSection = 'education'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'education',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'education'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Education
+      </button>
+
+      <button (click)="activeSection = 'experience'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'experience',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'experience'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Experience
+      </button>
+
+      <button (click)="activeSection = 'objective'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'objective',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'objective'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Objective
+      </button>
+
+      <button (click)="activeSection = 'skill'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'skill',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'skill'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Skill
+      </button>
+
+      <button (click)="activeSection = 'declaration'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'declaration',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'declaration'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Declaration
+      </button>
+      <h1>More Sections</h1>
+      <hr class="h-5 bold" />
+      <button (click)="activeSection = 'interests'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'interests',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'interests'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Interests
+      </button>
+      <button (click)="activeSection = 'projects'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'projects',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'projects'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Projects
+      </button>
+
+      <button (click)="activeSection = 'moreSection'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'moreSection',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'moreSection'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Add More Section
+      </button>
+
+      <h1>Manage Sections</h1>
+      <hr class="h-5 bold" />
+
+      <button (click)="activeSection = 'rearrange'" [ngClass]="{
+          'bg-blue-600 text-white': activeSection === 'moreSection',
+          'text-gray-700 hover:bg-blue-100 hover:text-blue-700':
+            activeSection !== 'rearrange'
+        }" class="w-full text-left px-4 py-2 rounded-lg transition-colors duration-200 font-medium shadow">
+        Rearrange / Edit Headings
+      </button>
+      <!-- Add more buttons if needed -->
+    </nav>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="p-6 overflow-y-auto bg-white">
+    <div class="max-w-3xl mx-auto space-y-10">
+      <section *ngIf="activeSection === 'personal'" class="p-6 rounded">
+        <div [formGroup]="personaldetail" class="shadow">
+          <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+            <h1 class="text-2xl bold text-white">Personal Details</h1>
+          </div>
+
+          <div class="p-2">
+            <div class="flex flex-col mb-2">
+              <label for="" class="mb-1">FullName</label>
+              <input type="text" formControlName="fullName"
+                class="border-1 border-solid p-2 border-indigo-500 rounded" />
+              <div
+                *ngIf="personaldetail.get('fullName')?.touched && personaldetail.get('fullName')?.errors?.['required'] ">
+                <span class="text-red-500"> Username is required.</span>
+              </div>
+              <div
+                *ngIf="personaldetail.get('fullName')?.touched && personaldetail.get('fullName')?.errors?.['minlength'] ">
+                <span class="text-red-500">
+                  Username must be at least 3 characters.
+                </span>
+              </div>
+            </div>
+            <div class="flex flex-col mb-2">
+              <label for="" class="mb-1">Email</label>
+              <input type="text" formControlName="email" class="border-1 border-solid p-2 border-indigo-500 rounded" />
+              <div *ngIf="personaldetail.get('email')?.touched && personaldetail.get('email')?.errors?.['required'] ">
+                <span class="text-red-500"> Email is required.</span>
+              </div>
+              <div *ngIf="personaldetail.get('email')?.touched && personaldetail.get('email')?.errors?.['minlength'] ">
+                <span class="text-red-500">
+                  Please provide the valid email.
+                </span>
+              </div>
+            </div>
+            <div class="flex flex-col mb-2">
+              <label for="" class="mb-1">Phone</label>
+              <input formControlName="phone" class="border-1 border-solid p-2 border-indigo-500 rounded" maxlength="10"
+                pattern="[0-9]*" inputmode="numeric" />
+              <div *ngIf="personaldetail.get('phone')?.touched && personaldetail.get('phone')?.errors?.['required'] ">
+                <span class="text-red-500"> Phone is required.</span>
+              </div>
+              <div *ngIf="personaldetail.get('phone')?.touched && personaldetail.get('phone')?.errors?.['pattern'] ">
+                <span class="text-red-500">
+                  Phone number must be 10 characters.
+                </span>
+              </div>
+            </div>
+            <div class="flex flex-col mb-2">
+              <label for="" class="mb-1">Address</label>
+              <textarea type="textarea" formControlName="address"
+                class="border-1 border-solid p-2 border-indigo-500 rounded" rows="5" cols="5"> </textarea>
+              <div
+                *ngIf="personaldetail.get('address')?.touched && personaldetail.get('address')?.errors?.['required'] ">
+                <span class="text-red-500"> Address is required.</span>
+              </div>
+              <div
+                *ngIf="personaldetail.get('address')?.touched && personaldetail.get('address')?.errors?.['maxlength'] ">
+                <span class="text-red-500">
+                  Address should not more than 100 characters.
+                </span>
+              </div>
+            </div>
+            <div class="flex flex-col mb-10">
+              <label for="" class="mb-1">Profile Picture</label>
+              <!-- <input type="file" formControlName="photo" class="border-1 border-solid p-2 border-indigo-500 rounded"> -->
+
+              <div class="flex justify-center space-x-10">
+                <input type="file" id="photo" (change)="handleFileInput($event)" accept="image/*"
+                  class="p-2 border-indigo-500 rounded" />
+                <div *ngIf="previewUrl" class="mt-2">
+                  <img [src]="previewUrl" alt="Preview" class="w-32 h-32 rounded-full object-cover" />
+                </div>
+              </div>
+
+              <div *ngIf="personaldetail.get('photo')?.touched && personaldetail.get('photo')?.errors?.['required'] ">
+                <span class="text-red-500"> Please upload file</span>
+              </div>
+              <div *ngIf="personaldetail.get('photo')?.touched && personaldetail.get('photo')?.errors?.['minlength'] ">
+                <span class="text-red-500">
+                  File size should not be more than 5MB.
+                </span>
+              </div>
+            </div>
+
+            <div class="flex mx-auto justify-end space-x-10 mr-16">
+              <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="onSave()"
+                >
+                Save
+              </button>
+              <button class="bg-blue-700 rounded p-1 w-20 text-white" (click)="onReset()">
+                Reset
+              </button>
+            </div>
+
+            <h1>{{ userInfo | json }}</h1>
+          </div>
+        </div>
+      </section>
+
+      <section *ngIf="activeSection === 'experience'" class="p-6 rounded">
+        <div [formGroup]="experienceForm">
+          <div formArrayName="experiences">
+            <div *ngFor="let group of experiences.controls; let i = index" [formGroupName]="i"
+              class="shadow-md rounded mb-4">
+              <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+                <h1 class="text-2xl bold text-white">Experience{{ i + 1 }}</h1>
+                <button type="button" (click)="removeExperience(i)" class="bg-purple-500 rounded p-1 w-20 text-white">
+                  Remove
+                </button>
+              </div>
+              <div class="p-2">
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Company Name</label>
+                  <input type="text" formControlName="companyName"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('companyName')?.touched && personaldetail.get('companyName')?.errors?.['required'] ">
+                    <span class="text-red-500"> degree is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('companyName')?.touched && personaldetail.get('companyName')?.errors?.['minlength'] ">
+                    <span class="text-red-500">
+                      degree must be at least 3 characters.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Job Title</label>
+                  <input type="text" formControlName="jobTitle"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('jobTitle')?.touched && personaldetail.get('jobTitle')?.errors?.['required'] ">
+                    <span class="text-red-500"> jobTitle is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('jobTitle')?.touched && personaldetail.get('jobTitle')?.errors?.['minlength'] ">
+                    <span class="text-red-500">
+                      Please provide the valid jobTitle.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex space-x-10 mb-2">
+                  <div class="flex flex-col">
+                    <label for="" class="mb-1">Start Date</label>
+                    <input formControlName="startDate" class="border-1 border-solid p-2 border-indigo-500 rounded"
+                      maxlength="10" pattern="[0-9]*" inputmode="numeric" />
+                    <div
+                      *ngIf="personaldetail.get('startDate')?.touched && personaldetail.get('startDate')?.errors?.['required'] ">
+                      <span class="text-red-500"> Phone is required.</span>
+                    </div>
+                    <div
+                      *ngIf="personaldetail.get('startDate')?.touched && personaldetail.get('startDate')?.errors?.['pattern'] ">
+                      <span class="text-red-500">
+                        Phone number must be 10 characters.
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <label for="" class="mb-1">End Date</label>
+
+                    <input type="text" formControlName="endDate"
+                      class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                    <div
+                      *ngIf="personaldetail.get('endDate')?.touched && personaldetail.get('endDate')?.errors?.['required'] ">
+                      <span class="text-red-500"> Address is required.</span>
+                    </div>
+                    <div
+                      *ngIf="personaldetail.get('endDate')?.touched && personaldetail.get('endDate')?.errors?.['maxlength'] ">
+                      <span class="text-red-500">
+                        endDate should not more than 100 characters.
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Experience</label>
+
+                  <textarea type="text" formControlName="experience"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" rows="5" cols="5">
+                  </textarea>
+                  <div
+                    *ngIf="personaldetail.get('experience')?.touched && personaldetail.get('experience')?.errors?.['required'] ">
+                    <span class="text-red-500"> experience is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('experience')?.touched && personaldetail.get('experience')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      experience should not more than 100 characters.
+                    </span>
+                  </div>
+                </div>
+
+               
+              </div>
+            </div>
+          </div>
+        </div> 
+         <div class="flex mx-auto justify-end space-x-10 mr-16 mb-1">
+                  <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="addExperience()">
+                    Add
+                  </button>
+                  <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveEducation()">
+                    Save
+                  </button>
+                </div>
+
+                <h1>{{ ed | json }}</h1>
+      </section>
+
+      <section *ngIf="activeSection === 'education'" class="p-6">
+        <div [formGroup]="educationForm">
+          <div formArrayName="educations">
+            <div *ngFor="let group of educations.controls; let i = index" [formGroupName]="i"
+              class="shadow-md rounded mb-4">
+              <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+                <h1 class="text-2xl bold text-white">Education{{ i + 1 }}</h1>
+                <button type="button" (click)="removeEducation(i)" class="bg-purple-500 rounded p-1 w-20 text-white">
+                  Remove
+                </button>
+              </div>
+              <div class="p-2">
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">degree</label>
+                  <input type="text" formControlName="degree"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('degree')?.touched && personaldetail.get('degree')?.errors?.['required'] ">
+                    <span class="text-red-500"> degree is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('degree')?.touched && personaldetail.get('degree')?.errors?.['minlength'] ">
+                    <span class="text-red-500">
+                      degree must be at least 3 characters.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">university</label>
+                  <input type="text" formControlName="university"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('university')?.touched && personaldetail.get('university')?.errors?.['required'] ">
+                    <span class="text-red-500"> university is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('university')?.touched && personaldetail.get('university')?.errors?.['minlength'] ">
+                    <span class="text-red-500">
+                      Please provide the valid university.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">score</label>
+                  <input formControlName="score" class="border-1 border-solid p-2 border-indigo-500 rounded"
+                    maxlength="10" pattern="[0-9]*" inputmode="numeric" />
+                  <div
+                    *ngIf="personaldetail.get('score')?.touched && personaldetail.get('score')?.errors?.['required'] ">
+                    <span class="text-red-500"> Phone is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('score')?.touched && personaldetail.get('score')?.errors?.['pattern'] ">
+                    <span class="text-red-500">
+                      Phone number must be 10 characters.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Year</label>
+
+                  <input type="text" formControlName="year"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div *ngIf="personaldetail.get('year')?.touched && personaldetail.get('year')?.errors?.['required'] ">
+                    <span class="text-red-500"> Address is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('year')?.touched && personaldetail.get('year')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      Address should not more than 100 characters.
+                    </span>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div class="flex mx-auto justify-end space-x-10 mr-16 mb-1">
+                  <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="addEducation()">
+                    Add
+                  </button>
+                  <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveEducation()">
+                    Save
+                  </button>
+                </div>
+
+                <h1>{{ ed | json }}</h1>
+      </section>
+
+      <!-- this is the section for the objective  -->
+      <section *ngIf="activeSection === 'objective'" class="rounded shadow">
+        <div [formGroup]="objectiveForm" class="shadow">
+          <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+            <h1 class="text-2xl bold text-white">Objective</h1>
+          </div>
+
+          <div class="p-2">
+            <div class="flex flex-col mb-2">
+              <label for="" class="mb-1">Objective </label>
+
+              <textarea type="text" formControlName="objective"
+                class="border-1 border-solid p-2 border-indigo-500 rounded" rows="5" cols="5">
+              </textarea>
+              <div
+                *ngIf="personaldetail.get('objective')?.touched && personaldetail.get('objective')?.errors?.['required'] ">
+                <span class="text-red-500"> experience is required.</span>
+              </div>
+              <div
+                *ngIf="personaldetail.get('objective')?.touched && personaldetail.get('objective')?.errors?.['maxlength'] ">
+                <span class="text-red-500">
+                  experience should not more than 100 characters.
+                </span>
+              </div>
+
+              <div class="flex mx-auto justify-end space-x-10 mr-16 mt-5">
+                <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveObjective()">
+                  Save
+                </button>
+                <button class="bg-blue-700 rounded p-1 w-20 text-white" (click)="onReset()">
+                  Reset
+                </button>
+              </div>
+
+              <h1>{{ userInfo }}</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- This the Skill set section -->
+
+      <section *ngIf="activeSection === 'skill'" class="rounded">
+        <div [formGroup]="skillForm">
+          <div formArrayName="skills">
+            <div *ngFor="let group of skills.controls; let i = index" [formGroupName]="i" class="shadow mt-5">
+              <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+                <h1 class="text-2xl bold text-white">Skill{{ i + 1 }}</h1>
+                <button type="button" (click)="removeskill(i)" class="bg-purple-500 rounded p-1 w-20 text-white">
+                  Remove
+                </button>
+              </div>
+
+              <div class="p-2">
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Skill </label>
+
+                  <input type="text" formControlName="skill"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('skill')?.touched && personaldetail.get('skill')?.errors?.['required'] ">
+                    <span class="text-red-500"> experience is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('skill')?.touched && personaldetail.get('skill')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      experience should not more than 100 characters.
+                    </span>
+                  </div>
+
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> 
+
+        <div class="flex mx-auto justify-end space-x-10 mr-16 mt-5">
+                    <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="addSkill()">
+                      Add
+                    </button>
+
+                    <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveSkill()">
+                      Save
+                    </button>
+                  </div>
+      </section>
+
+      <!-- This is the Declaration Section -->
+
+      <section *ngIf="activeSection === 'declaration'" class="p-6">
+        <div [formGroup]="declarationForm">
+          <div formArrayName="declarations">
+            <div *ngFor="let group of declarations.controls; let i = index" [formGroupName]="i"
+              class="shadow-md rounded mb-4">
+              <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+                <h1 class="text-2xl bold text-white">Declaration{{ i + 1 }}</h1>
+                <button type="button" (click)="removeDeclaration(i)" class="bg-purple-500 rounded p-1 w-20 text-white">
+                  Remove
+                </button>
+              </div>
+              <div class="p-2">
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Refree's Name</label>
+                  <input type="text" formControlName="refreesName"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('refreesName')?.touched && personaldetail.get('refreesName')?.errors?.['required'] ">
+                    <span class="text-red-500"> refreesName is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('refreesName')?.touched && personaldetail.get('refreesName')?.errors?.['minlength'] ">
+                    <span class="text-red-500">
+                      refreesName must be at least 3 characters.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Job Title</label>
+                  <input type="text" formControlName="jobTitle"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('jobTitle')?.touched && personaldetail.get('jobTitle')?.errors?.['required'] ">
+                    <span class="text-red-500"> jobTitle is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('jobTitle')?.touched && personaldetail.get('jobTitle')?.errors?.['minlength'] ">
+                    <span class="text-red-500">
+                      Please provide the valid jobTitle.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Company Name</label>
+                  <input formControlName="companyName" class="border-1 border-solid p-2 border-indigo-500 rounded"
+                    maxlength="10" pattern="[0-9]*" inputmode="numeric" />
+                  <div
+                    *ngIf="personaldetail.get('companyName')?.touched && personaldetail.get('companyName')?.errors?.['required'] ">
+                    <span class="text-red-500"> Company Name is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('companyName')?.touched && personaldetail.get('companyName')?.errors?.['pattern'] ">
+                    <span class="text-red-500">
+                      Company Name must be 10 characters.
+                    </span>
+                  </div>
+                </div>
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Email</label>
+
+                  <input type="text" formControlName="email"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('email')?.touched && personaldetail.get('email')?.errors?.['required'] ">
+                    <span class="text-red-500"> email is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('email')?.touched && personaldetail.get('email')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      email should not more than 100 characters.
+                    </span>
+                  </div>
+                </div>
+
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Phone </label>
+
+                  <input type="text" formControlName="phone"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('phone')?.touched && personaldetail.get('phone')?.errors?.['required'] ">
+                    <span class="text-red-500"> phone is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('phone')?.touched && personaldetail.get('phone')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      phone should not more than 100 characters.
+                    </span>
+                  </div>
+                </div>
+
+                <h1>{{ ed | json }}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex mx-auto justify-end space-x-10 mr-16 mb-1">
+          <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="addDeclaration()">
+            Add
+          </button>
+          <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveEducation()">
+            Save
+          </button>
+        </div>
+      </section>
+
+      <!-- This is the interest -->
+
+      <section *ngIf="activeSection === 'interests'" class="rounded">
+        <div [formGroup]="interestsForm">
+          <div formArrayName="interests">
+            <div *ngFor="let group of interests.controls; let i = index" [formGroupName]="i" class="shadow mt-5">
+              <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+                <h1 class="text-2xl bold text-white">Interest{{ i + 1 }}</h1>
+                <button type="button" (click)="removesInterest(i)" class="bg-purple-500 rounded p-1 w-20 text-white">
+                  Remove
+                </button>
+              </div>
+
+              <div class="p-2">
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Interests </label>
+
+                  <input type="text" formControlName="interests"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('interests')?.touched && personaldetail.get('interests')?.errors?.['required'] ">
+                    <span class="text-red-500"> experience is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('interests')?.touched && personaldetail.get('interests')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      experience should not more than 100 characters.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex mx-auto justify-end space-x-10 mr-16 mt-5">
+          <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="addInterests()">
+            Add
+          </button>
+
+          <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveSkill()">
+            Save
+          </button>
+        </div>
+      </section> 
+
+      <!-- This is the Projects Section --> 
+
+      <section *ngIf="activeSection === 'projects'" class="rounded">
+        <div [formGroup]="projectsForm">
+          <div formArrayName="projects">
+            <div *ngFor="let group of projects.controls; let i = index" [formGroupName]="i" class="shadow mt-5">
+              <div class="flex justify-between mb-2 bg-purple-300 p-2 rounded">
+                <h1 class="text-2xl bold text-white">Project{{ i + 1 }}</h1>
+                <button type="button" (click)="removeProjects(i)" class="bg-purple-500 rounded p-1 w-20 text-white">
+                  Remove
+                </button>
+              </div>
+
+              <div class="p-2">
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Title </label>
+
+                  <input type="text" formControlName="title"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" />
+                  <div
+                    *ngIf="personaldetail.get('title')?.touched && personaldetail.get('title')?.errors?.['required'] ">
+                    <span class="text-red-500"> experience is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('title')?.touched && personaldetail.get('title')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      experience should not more than 100 characters.
+                    </span>
+                  </div>
+                </div> 
+
+                <div class="flex flex-col mb-2">
+                  <label for="" class="mb-1">Description </label>
+
+                  <textarea type="text" formControlName="description"
+                    class="border-1 border-solid p-2 border-indigo-500 rounded" rows="5" cols="5"> </textarea>
+                  <div
+                    *ngIf="personaldetail.get('description')?.touched && personaldetail.get('description')?.errors?.['required'] ">
+                    <span class="text-red-500"> experience is required.</span>
+                  </div>
+                  <div
+                    *ngIf="personaldetail.get('description')?.touched && personaldetail.get('description')?.errors?.['maxlength'] ">
+                    <span class="text-red-500">
+                      experience should not more than 100 characters.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex mx-auto justify-end space-x-10 mr-16 mt-5">
+          <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="addProjects()">
+            Add
+          </button>
+
+          <button type="submit" class="bg-blue-700 rounded p-1 w-20 text-white" (click)="saveSkill()">
+            Save
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>

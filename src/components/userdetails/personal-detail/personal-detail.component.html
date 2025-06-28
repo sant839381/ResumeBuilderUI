@@ -1,0 +1,38 @@
+<form [formGroup]="personalForm" (ngSubmit)="onSubmit()" class="space-y-6">
+  <!-- Photo Upload -->
+  <div class="text-center">
+    <label class="block text-sm font-medium text-gray-700">Upload Photo</label>
+    <input type="file" (change)="onPhotoSelected($event)" class="mt-2" />
+    <div *ngIf="photoPreview" class="mt-4">
+      <img [src]="photoPreview" alt="Photo Preview" class="w-24 h-24 rounded-full object-cover mx-auto border-2 border-blue-500" />
+    </div>
+  </div>
+
+  <!-- Full Name -->
+  <div>
+    <label class="block text-sm font-medium">Full Name</label>
+    <input formControlName="fullName" type="text" class="mt-1 input-field" />
+  </div>
+
+  <!-- Email -->
+  <div>
+    <label class="block text-sm font-medium">Email</label>
+    <input formControlName="email" type="email" class="mt-1 input-field" />
+  </div>
+
+  <!-- Phone -->
+  <div>
+    <label class="block text-sm font-medium">Phone</label>
+    <input formControlName="phone" type="tel" class="mt-1 input-field" />
+  </div>
+
+  <!-- Location -->
+  <div>
+    <label class="block text-sm font-medium">Location</label>
+    <input formControlName="location" type="text" class="mt-1 input-field" />
+  </div>
+
+  <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+    Save Personal Details
+  </button>
+</form>

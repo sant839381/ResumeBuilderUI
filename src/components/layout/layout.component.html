@@ -1,0 +1,57 @@
+
+<nav class="bg-white shadow-md" >
+  <div class="container mx-auto px-4">
+    <div class="flex justify-between items-center p-3">
+      <!-- Logo -->
+      <div class="font-bold text-blue-600 text-xl">ResumeMint</div>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex space-x-12">
+        <a routerLink="" class="text-gray-700 hover:text-blue-600">Home</a>
+        <a routerLink="app-template" class="text-gray-700 hover:text-blue-600">Template</a>
+        <a routerLink="app-home" class="text-gray-700 hover:text-blue-600">Builder</a>
+        <a href="#" class="text-gray-700 hover:text-blue-600">Pricing</a>
+      </div>
+
+      <!-- Right Controls -->
+      <div class="hidden md:flex items-center space-x-6">
+        <label class="inline-flex items-center cursor-pointer">
+          <input type="checkbox" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-blue-600 relative transition-colors">
+            <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform transform peer-checked:translate-x-5"></div>
+          </div>
+          <span class="ml-3 text-sm font-medium text-gray-900">Hindi</span>
+        </label>
+
+        <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded">Log in</button>
+      </div>
+
+      <!-- Hamburger Button -->
+      <div class="md:hidden">
+        <button  class="text-gray-700 focus:outline-none" (click)="hamburger()">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Links -->
+    <div *ngIf="isActive" class="md:hidden flex flex-col space-y-2 p-4">
+      <a href="#" class="text-gray-700 hover:text-blue-600">Home</a>
+      <a href="#" class="text-gray-700 hover:text-blue-600">Template</a>
+      <a href="#" class="text-gray-700 hover:text-blue-600">Builder</a>
+      <a href="#" class="text-gray-700 hover:text-blue-600">Pricing</a>
+       <label class="inline-flex items-center cursor-pointer">
+          <input type="checkbox" class="sr-only peer">
+          <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-blue-600 relative transition-colors">
+            <div class="absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform transform peer-checked:translate-x-5"></div>
+          </div>
+          <span class="ml-3 text-sm font-medium text-gray-900">Hindi</span>
+        </label>
+      <button class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-1 px-2 rounded mt-2 w-max">Log in</button>
+    </div>
+  </div>
+</nav>
+
