@@ -3,6 +3,9 @@ import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router, RouterLink } from '@angular/router';
+import { EducationServiceService } from '../../app/education-service.service';
+
+
 
 @Component({
   selector: 'app-user-detail',
@@ -46,10 +49,13 @@ export class UserDetailComponent {
     })
     this.projectsForm = this.fb.group({
 projects:  this.fb.array([])
-    })
+    }) 
+
+  
+
   } 
 
-  constructor(private router: Router, private fb :FormBuilder) { }
+  constructor(private router: Router, private fb :FormBuilder, private educationServiceService : EducationServiceService) { }
 
   goToUserDetail() {
     this.router.navigate(['/app-personalDetail']);
@@ -102,7 +108,7 @@ createEducationForm() : FormGroup{
     degree: [''],
     university: [''],
     score: [''],
-    year: ['']
+    edyear: ['']
 
     })
   }
@@ -132,7 +138,12 @@ this.educations.removeAt(index);
 }
 
 saveEducation(){  
-  this.ed= this.educationForm.value;
+  this.ed= this.educationForm.value; 
+    this.educationServiceService.register(this.ed).subscribe({
+      next: (res) => console.log('✅ Registered successfully:', res),
+      error: (err) => console.error('❌ Registration error:', err),
+    });
+console.log(JSON.stringify( this.ed));
 
 } 
 

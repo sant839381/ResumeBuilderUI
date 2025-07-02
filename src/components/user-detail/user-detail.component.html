@@ -362,9 +362,9 @@
                 <div class="flex flex-col mb-2">
                   <label for="" class="mb-1">Year</label>
 
-                  <input type="text" formControlName="year"
+                  <input type="text" formControlName="edyear"
                     class="border-1 border-solid p-2 border-indigo-500 rounded" />
-                  <div *ngIf="personaldetail.get('year')?.touched && personaldetail.get('year')?.errors?.['required'] ">
+                  <div *ngIf="personaldetail.get('edyear')?.touched && personaldetail.get('edyear')?.errors?.['required'] ">
                     <span class="text-red-500"> Address is required.</span>
                   </div>
                   <div
